@@ -49,6 +49,7 @@ impeach
 ```{r}
 
 
+filter(impeach, for_impeachment == "NO")
 
 
 
@@ -59,7 +60,9 @@ impeach
 
 ```{r}
 
-
+filter(impeach, 
+       for_impeachment == "NO",
+       p16winningparty == "R")
 
 
 
@@ -69,7 +72,10 @@ impeach
 
 ```{r}
 
-
+filter(impeach, 
+       for_impeachment == "NO",
+       p16winningparty == "R",
+       p12winningparty == "R")
 
 
 
@@ -78,8 +84,10 @@ impeach
 4) Filter for only results from September 2019 where a member is a YES for impeachment.
 
 ```{r}
-
-
+filter(impeach,
+       date_month == 9,
+       date_year == 2019,
+       for_impeachment == "YES")
 
 
 

@@ -96,7 +96,9 @@ Now, let's actually filter by more than one thing at a time, so we can capture b
 
 ```{r}
 
-filter(flightdata, dest == "SRQ", month <= 3)
+filter(flightdata, 
+       dest == "SRQ", 
+       month <= 3)
 #note the comma separating the filtering terms
 
 ```
@@ -129,7 +131,7 @@ It takes the result and applies something new to it, in sequential order. This b
 ```{r}
 
 flightdata %>% 
-  arrange(dep_delay)
+  arrange(desc(dep_delay)
 
 ```
 
@@ -181,7 +183,14 @@ Dplyr makes this all easy using the `select()` function. Let's take a look...
 ```{r}
 
 flightdata  %>% 
-  select(carrier, flight, origin, dest, month, day, sched_dep_time, dep_delay)
+  select(carrier, 
+         flight, 
+         origin, 
+         dest, 
+         month, 
+         day, 
+         sched_dep_time, 
+         dep_delay)
 
 ```
 
@@ -274,7 +283,7 @@ Set the stock ticker as an object and the start and end dates for the data that 
 
 ```{r}
 
-ticker <- "MSFT"  
+ticker <- "XOM"  
 
 ```
 
@@ -343,7 +352,7 @@ stock_data %>%
 ```{r}
 
 stock_data %>% 
-  filter(date == max(date))
+  filter(date == min(date))
 
 ```
 
@@ -375,6 +384,8 @@ gasprices_weekly
 
 ```{r}
 
+gasprices_weekly %>% 
+  filter (price == min(price))
 
 
 
@@ -384,8 +395,11 @@ gasprices_weekly
 
 ```{r}
 
+aug_onwards <- gasprices_weekly %>% 
+  filter (date >= "2022-08-01")
 
-
+aug_onwards %>% 
+  filter(price == max(price))
 
 ```
 
